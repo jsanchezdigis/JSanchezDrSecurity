@@ -1,0 +1,61 @@
+﻿@model ML.Persona
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div style="float:right;">
+            @Html.ActionLink("Agregar", "Form", "Persona", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model.Personas != null)
+        {
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td style="text-align:center">Editar</td>
+
+                        <td style="display :none;">id</td>
+                        <td style="text-align:center">Nombre</td>
+                        <td style="text-align:center">Fecha de Nacimiento</td>
+                        <td style="text-align:center">Sexo</td>
+                        <td style="text-align:center">Estado de Nacimiento</td>
+                        <td style="text-align:center">Telefono</td>
+                        <td style="text-align:center">Direccion</td>
+                        <td style="text-align:center">CURP</td>
+
+                        <td style="text-align:center">Eliminar</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (ML.Persona persona in Model.Personas)
+                    {
+                        <tr>
+                            <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning glyphicon  glyphicon glyphicon-cog" href="@Url.Action("Form", "Persona", new { IdPersona = persona.IdPersona})"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
+                            <td style="display :none;">@persona.IdPersona </td>
+                            <td style="text-align:center">@persona.Nombre @persona.ApellidoPaterno @persona.ApellidoMaterno</td>
+                            <td style="text-align:center">@persona.FechaNacimiento</td>
+                            <td style="text-align:center">@persona.Sexo</td>
+                            <td style="text-align:center">@persona.EstadoNacimiento</td>
+                            <td style="text-align:center">@persona.Telefono</td>
+                            <td style="text-align:center">@persona.Direccion.Calle @persona.Direccion.NumeroInterior @persona.Direccion.NumeroExterior @persona.Direccion.Colonia @persona.Direccion.Municipio @persona.Direccion.Estado</td>
+                            <td style="text-align:center">@persona.CURP</td>
+                            <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Persona", new { idPersona = persona.IdPersona})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">Ocurrio un error al realizar la consulta</div>
+        }
+    </div>
+</div>
+
+

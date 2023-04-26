@@ -1,0 +1,133 @@
+﻿@model ML.Persona
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Persona</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Persona", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.IdPersona, new { @style = "display:none;" })
+                            @Html.TextBoxFor(model => model.IdPersona, new { @style = "display:none;" })
+                            @Html.ValidationMessageFor(model => model.IdPersona)
+                            @*hidden*@
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nombre)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+                                @Html.ValidationMessageFor(model => model.Nombre)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoPaterno)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FechaNacimiento)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "datefield", type = "date" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Sexo)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Sexo)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.EstadoNacimiento)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.EstadoNacimiento, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EstadoNacimiento)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Telefono)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Telefono)
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CURP)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.CURP, new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.CURP)
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Direccion.IdDireccion)
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-building" style="color:darkcyan"></i></span>
+                                @Html.TextBoxFor(model => model.Direccion.IdDireccion, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Direccion.IdDireccion)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-bookmark" style="color:green"></i></span>
+                                <input type="submit" value="Guardar" class="btn btn-success" />
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-rotate-left" style="color:red"></i></span>
+                                @Html.ActionLink("Regresar", "GetAll", "Persona", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
